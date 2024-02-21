@@ -1,29 +1,88 @@
-// Online Java Compiler
-// Use this editor to write, compile and run your Java code online
-
-class Person {
-    public String name;
-    public boolean[] steps;
-    
-    public Person(String name, int iterations) {
-        this.name = name;
-        steps = new boolean[iterations];
-    }
-    
-    public void iterogasi(Person orangLain) {
-        
-    }
-}
+import java.util.LinkedList;
 
 class PrisonerSimulation {
+
     public static void main(String[] args) {
         System.out.println("Prissoners Dilemma");
-        int iterations = 10;
-        Person a = new Person("selalu memaafkan", iterations);
-        Person b = new Person("membalas dan memaafkan", iterations);
-        Person c = new Person("selalu membalas", iterations);
-        Person d = new Person("selalu berkhianat", iterations);
-        Person e = new Person("membalas susah memaafkan", iterations);
         
+        int iterations = 10;
+        Person a = new OrangBaik();
+        Person b = new BalasMemaafkan();
+
+        Person[] persons = {a, b};
+        for (int i=0; i< persons.length; i++) {
+            for (int j=0; j < persons.length; j++) {
+                int poinA = 0;
+                int poinB = 0;
+                
+                a.steps.clear();
+                b.steps.clear();
+                a.steps.add(true);
+                b.steps.add(true);
+                for (int iter=0; iter < iterations; iter++) {
+                    a.respond(b);
+                    b.respond(a);
+                }
+                System.out.println("Person A");
+                for (boolean val: a.steps) {
+                    System.out.println(val);
+                }
+                System.out.println("Person B");
+                for (boolean val: b.steps) {
+                    System.out.println(val);
+                }
+
+                a.steps.clear();
+                b.steps.clear();
+                a.steps.add(true);
+                b.steps.add(false);
+                for (int iter=0; iter < iterations; iter++) {
+                    a.respond(b);
+                    b.respond(a);
+                }
+                System.out.println("Person A");
+                for (boolean val: a.steps) {
+                    System.out.println(val);
+                }
+                System.out.println("Person B");
+                for (boolean val: b.steps) {
+                    System.out.println(val);
+                }
+
+                a.steps.clear();
+                b.steps.clear();
+                a.steps.add(false);
+                b.steps.add(true);
+                for (int iter=0; iter < iterations; iter++) {
+                    a.respond(b);
+                    b.respond(a);
+                }
+                System.out.println("Person A");
+                for (boolean val: a.steps) {
+                    System.out.println(val);
+                }
+                System.out.println("Person B");
+                for (boolean val: b.steps) {
+                    System.out.println(val);
+                }
+
+                a.steps.clear();
+                b.steps.clear();
+                a.steps.add(false);
+                b.steps.add(false);
+                for (int iter=0; iter < iterations; iter++) {
+                    a.respond(b);
+                    b.respond(a);
+                }
+                System.out.println("Person A");
+                for (boolean val: a.steps) {
+                    System.out.println(val);
+                }
+                System.out.println("Person B");
+                for (boolean val: b.steps) {
+                    System.out.println(val);
+                }
+            }
+        }
     }
 }
